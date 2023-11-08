@@ -141,7 +141,7 @@ function finish() {
 
 
 //------------設定---------------//
-const wav_dir = "./wav/";
+const wav_dir = "wav/";
 
 //var natural;
 var choral;
