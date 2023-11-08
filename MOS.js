@@ -33,6 +33,7 @@ function loadText(filename) {
     alert(filename)
     var list = xhr.responseText.split(/\r\n|\r|\n/);
     list.pop();
+    alert(list);
     return list;
 }
 
