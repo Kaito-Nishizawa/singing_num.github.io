@@ -212,6 +212,7 @@ function finish() {
 
 //------------設定---------------//
 const wav_dir = "wav/";
+document.onkeypress = invalid_enter();
 
 //var natural;
 var choral;
