@@ -31,19 +31,42 @@
             <li>ヘッドホンやイヤホンを着用した状態で行って下さい。</li>
         </ul>
     </div>
-    <script src="./MOS.js"></script>
+    <script src="MOS.js"></script>
     <div id="Display1">
         名前<br>
         <input type="text" name="input_name" id="name" value><br><br>
         <button id="next1" onclick="start_experiment()">Start</button>
     </div>
     <div id="Display2" style="display: none;">
-        <p id = "page"></p>
-        <p id = "lylic">歌詞<br>
-            </p>
-        <p id = "audio">
-            Voice 1:<br>
-
+        <p id="page"></p>
+        <txt><p id="lylic"></p></txt>
+        <table>
+            <tr>
+                <td id="Choral1"></td>
+                <td id="Choral2"></td>
+                <td id="Choral3"></td>
+                <td id="Choral4"></td>
+            </tr>
+            <tr>
+                <td id="Choral5"></td>
+                <td id="Choral6"></td>
+                <td id="Choral7"></td>
+            </tr>
+        </table>
+        <p>
+            <li>どれが一番自然な合唱でしたか？</li>
+            <label><input type="radio" name="eval" onclick="evaluation()">1</label>
+            <label><input type="radio" name="eval" onclick="evaluation()">2</label>
+            <label><input type="radio" name="eval" onclick="evaluation()">3</label>
+            <label><input type="radio" name="eval" onclick="evaluation()">4</label>
+            <label><input type="radio" name="eval" onclick="evaluation()">5</label>
+            <label><input type="radio" name="eval" onclick="evaluation()">6</label>
+            <label><input type="radio" name="eval" onclick="evaluation()">7</label>
+        </p>
+        <p>
+            <button id="prev" onclick="prev()">prev</button>
+            <button id="next2" onclick="next()">next</button>
+            <button id="finish" onclick="finish()">finish</button>
         </p>
     </div>
   </body>
