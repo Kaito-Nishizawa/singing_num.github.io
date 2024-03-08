@@ -40,11 +40,14 @@ function start_experiment() {
     // read filepath
     var list = wav_dir + "file.list";
     file_list = loadText(list);
+    alert(file_list)
     song_listA = loadText(file_list[0] + "Chorus.list");
+    alert(song_listA)
     song_listB = loadText(file_list[1] + "Chorus.list");
     shuffle_list_num = shuffleArray(song_listA.length)
     outfile = name + "_choral_evaluate.csv";
     console.log(file_list);
+    alert(song_listA.length)
     scores = (new Array(song_listA.length)).fill(0);
     song = (new Array(song_listA.length)).fill(0);
     eval = document.getElementsByName("eval");
@@ -55,11 +58,11 @@ function setLylic() {
     document.getElementById("page").textContent = (n + 1) + "/" + scores.length;
     document.getElementById("lylic").innerHTML = '歌詞:<br>'
     + '<object data="'
-    + file_list[n]
+    + file_list[0]
     + 'lylic.txt'
     + '"type="text/plain"'
-    + 'width="50%"'
-    + 'height="8%">'
+    + 'width="100%"'
+    + 'height="7%">'
     + '</object>';
 }
 
@@ -140,11 +143,11 @@ function evaluation() {
 
 function setAudio() {
     document.getElementById("Choral1").innerHTML = 'Voice 1:<br>'
-        + '<audio src="' + file_list[0] + song_listA[shuffle_list_num[n]]
+        + '<audio src="' + file_list[0] + song_listA[shuffle_list_num[n]] + '.wav'
         + '" controls preload="auto">'
         + '</audio>';
     document.getElementById("Choral2").innerHTML = 'Voice 2:<br>'
-        + '<audio src="' + file_list[1] + song_listB[shuffle_list_num[n]]
+        + '<audio src="' + file_list[1] + song_listB[shuffle_list_num[n]] + '.wav'
         + '" controls preload="auto">'
         + '</audio>';
 }
@@ -159,10 +162,10 @@ function init() {
 
 function exportCSV() {
     var csvData = "";
-    for (var i = 0; i < file_list.length; i++) {
-        csvData += "" + file_list[i] + ","
-            + song[i] + ","
-            + scores[i] + "\r\n";
+    for (var i = 0; i < song_listA.length; i++) {
+        csvData += song_listA[shuffle_list_num[i]] + ","
+            + song_listB[shuffle_list_num[i]] + ","
+            + scores[shuffle_list_num[i]] + "\r\n";
     }
 
     const link = document.createElement("a");
