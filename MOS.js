@@ -9,6 +9,15 @@ Array.prototype.shuffle = function () {
     return this;
 }
 
+function shuffleArray(n) {
+    const array = Array.from({ length: n }, (_, index) => index); // 0 から N-1 までの整数の配列を生成
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1)); // 0 から i の間でランダムなインデックスを生成
+        [array[i], array[j]] = [array[j], array[i]]; // 要素をランダムに入れ替える
+    }
+    return array;
+}
+
 Array.prototype.zip = function (...args) {
     const new_array = [];
     for (let i = 0; i < this.length; i++) {
@@ -31,11 +40,13 @@ function start_experiment() {
     // read filepath
     var list = wav_dir + "file.list";
     file_list = loadText(list);
-    file_list.shuffle();
+    song_listA = loadText(file_list[0] + "Chorus.list");
+    song_listB = loadText(file_list[1] + "Chorus.list");
+    shuffle_list_num = shuffleArray(song_listA.length)
     outfile = name + "_choral_evaluate.csv";
     console.log(file_list);
-    scores = (new Array(file_list.length)).fill(0);
-    song = (new Array(file_list.length)).fill(0);
+    scores = (new Array(song_listA.length)).fill(0);
+    song = (new Array(song_listA.length)).fill(0);
     eval = document.getElementsByName("eval");
     init();
 }
@@ -128,35 +139,12 @@ function evaluation() {
 }
 
 function setAudio() {
-    var song_list = file_list[n] + 'song.list';
-    song[n] = loadText(song_list);
-    song[n].shuffle();
     document.getElementById("Choral1").innerHTML = 'Voice 1:<br>'
-        + '<audio src="' + file_list[n] + song_list[0]
+        + '<audio src="' + file_list[0] + song_listA[shuffle_list_num[n]]
         + '" controls preload="auto">'
         + '</audio>';
     document.getElementById("Choral2").innerHTML = 'Voice 2:<br>'
-        + '<audio src="' + file_list[n] + song_list[1]
-        + '" controls preload="auto">'
-        + '</audio>';
-    document.getElementById("Choral3").innerHTML = 'Voice 3:<br>'
-        + '<audio src="' + file_list[n] + song_list[2]
-        + '" controls preload="auto">'
-        + '</audio>';
-    document.getElementById("Choral4").innerHTML = 'Voice 4:<br>'
-        + '<audio src="' + file_list[n] + song_list[3]
-        + '" controls preload="auto">'
-        + '</audio>';
-    document.getElementById("Choral5").innerHTML = 'Voice 5:<br>'
-        + '<audio src="' + file_list[n] + song_list[4]
-        + '" controls preload="auto">'
-        + '</audio>';
-    document.getElementById("Choral6").innerHTML = 'Voice 6:<br>'
-        + '<audio src="' + file_list[n] + song_list[5]
-        + '" controls preload="auto">'
-        + '</audio>';
-    document.getElementById("Choral7").innerHTML = 'Voice 7:<br>'
-        + '<audio src="' + file_list[n] + song_list[6]
+        + '<audio src="' + file_list[1] + song_listB[shuffle_list_num[n]]
         + '" controls preload="auto">'
         + '</audio>';
 }
@@ -220,7 +208,10 @@ var lylic;
 var outfile;
 var song;
 var file_list;
+var song_listA;
+var song_listB;
 var scores;
+var shuffle_list_num
 
 // ローカルで行う場合はloadText()は動作しないため
 var n = 0;
