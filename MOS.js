@@ -40,14 +40,11 @@ function start_experiment() {
     // read filepath
     var list = wav_dir + "file.list";
     file_list = loadText(list);
-    alert(file_list)
     song_listA = loadText(file_list[0] + "Chorus.list");
-    alert(song_listA)
     song_listB = loadText(file_list[1] + "Chorus.list");
     shuffle_list_num = shuffleArray(song_listA.length)
     outfile = name + "_choral_evaluate.csv";
     console.log(file_list);
-    alert(song_listA.length)
     scores = (new Array(song_listA.length)).fill(0);
     song = (new Array(song_listA.length)).fill(0);
     eval = document.getElementsByName("eval");
