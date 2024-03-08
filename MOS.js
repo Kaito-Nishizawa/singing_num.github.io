@@ -70,7 +70,10 @@ function loadText(filename) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", filename, false);
     xhr.send(null);
-    var list = xhr.responseText.split(/\r\n|\r|\n/);
+    // var list = xhr.responseText.split(/\r\n|\r|\n/);
+    var list = xhr.responseText.split(/\r\n|\r|\n/).filter(function(line) {
+        return line.trim() !== ""; // 空行を除外
+    });
     return list;
 }
 
