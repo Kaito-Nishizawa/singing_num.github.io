@@ -8,16 +8,16 @@
   </head>
   <body>
     <div class="title">
-        <h1>人工合唱評価　テスト</h1>
+        <h1>人工合唱評価　MOSテスト</h1>
         評価実験へのご協力ありがとうございます。<br>
-        各ページについて2種類の音声を聞いて、より合唱だと思う音声を1つ選んでください。<br>
-        評価基準はより多人数で歌ってるように聞こえるかです<br>
+        各ページについて音声を聞いて、当てはまるものを1つ選んでください。<br>
         実験の詳細について説明します。<br>
         <h2>実験手順</h2>
         <ol>
             <li>名前を入力してください。</li>
             <li>Startを押してください</li>
-            <li>2種類の音声を聞き、一番合唱だと思う音声を1つ選んでください。<br>
+            <li>合唱音声を聞き、5段階評価のうち当てはまるものを1つ選んでください。</br>
+                評価軸は音質ではなく、<span style="border-bottom: solid 1px red;">合唱の自然性です。</span></li>
                 音声は何度聞いても構いません。</li>
             <li>選択を終えたらnextボタンを押し、次の実験に進んでください。</li>
             <li>評価実験を終えたらfinishボタンを押して結果をダウンロードしてください。<br>
@@ -26,7 +26,7 @@
         </ol>
         <h2>注意</h2>
         <ul>
-            <li>この実験は約10~15分ほど要します</li>
+            <li>この実験は約15~20分ほど要します</li>
             <li>実験中はページの再読み込みは行わないで下さい。</li>
             <li>スマートフォンでは結果をダウンロードできない場合があるのでPCを使用して下さい。</li>
             <li>ヘッドホンやイヤホンを着用した状態で行って下さい。</li>
@@ -40,17 +40,17 @@
     </div>
     <div id="Display2" style="display: none;">
         <p id="page"></p>
-        <txt><p id="lylic"></p></txt>
         <table>
             <tr>
                 <td id="Choral1"></td>
-                <td id="Choral2"></td>
-            </tr>
         </table>
         <p>
-            <li>どちらが自然な合唱でしたか？</li>
-            <label><input type="radio" name="eval" onclick="evaluation()">1</label>
-            <label><input type="radio" name="eval" onclick="evaluation()">2</label>
+            <li>当てはまるものを選んでください</li>
+            <label><input type="radio" name="eval" onclick="evaluation()">5　非常に良い</label></br>
+            <label><input type="radio" name="eval" onclick="evaluation()">4　良い</label></br>
+            <label><input type="radio" name="eval" onclick="evaluation()">3　普通</label></br>
+            <label><input type="radio" name="eval" onclick="evaluation()">2　悪い</label></br>
+            <label><input type="radio" name="eval" onclick="evaluation()">1　非常に悪い</label></br>
         </p>
         <p>
             <button id="prev" onclick="prev()">prev</button>

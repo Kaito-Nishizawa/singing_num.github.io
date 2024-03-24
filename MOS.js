@@ -38,29 +38,31 @@ function start_experiment() {
     Display();
 
     // read filepath
-    var list = wav_dir + "file.list";
+    var list = wav_dir + "file3.list";
     file_list = loadText(list);
-    song_listA = loadText(file_list[0] + "Chorus.list");
-    song_listB = loadText(file_list[1] + "Chorus.list");
-    shuffle_list_num = shuffleArray(song_listA.length)
+    song_list = loadText(file_list[0] + "sound.list");
+    //console.log(song_list)
+    song_list.shuffle()
+    console.log(song_list)
     outfile = name + "_choral_evaluate.csv";
-    console.log(file_list);
-    scores = (new Array(song_listA.length)).fill(0);
-    song = (new Array(song_listA.length)).fill(0);
+    //console.log(file_list);
+    scores = (new Array(song_list.length)).fill(0);
+    song = (new Array(song_list.length)).fill(0);
     eval = document.getElementsByName("eval");
     init();
 }
 
 function setLylic() {
+    //console.log(scores.length)
     document.getElementById("page").textContent = (n + 1) + "/" + scores.length;
-    document.getElementById("lylic").innerHTML = '歌詞:<br>'
+    /*document.getElementById("lylic").innerHTML = '歌詞:<br>'
     + '<object data="'
     + file_list[0]
     + 'lylic.txt'
     + '"type="text/plain"'
     + 'width="100%"'
     + 'height="7%">'
-    + '</object>';
+    + '</object>';*/
 }
 
 function loadText(filename) {
@@ -119,7 +121,7 @@ function setButton() {
         document.getElementById("next2").disabled = true;
         document.getElementById("finish").disabled = true;
         for (var i = 0; i < eval.length; i++) {
-            console.log(next_flag);
+            //console.log(next_flag);
             if (eval[i].checked) {
                 next_flag += 1;
             }
@@ -127,7 +129,7 @@ function setButton() {
                 document.getElementById("next2").disabled = false;
                 break;
             }
-            console.log(next_flag);
+            //console.log(next_flag);
         }
     }
 }
@@ -135,26 +137,25 @@ function setButton() {
 function evaluation() {
     for (var i = 0; i < eval.length; i++) {
         if (eval[i].checked) {
-            scores[n] = i + 1;
+            scores[n] = 5 - i;
         }
     }
     setButton();
 }
 
 function setAudio() {
-    document.getElementById("Choral1").innerHTML = 'Voice 1:<br>'
-        + '<audio src="' + file_list[0] + song_listA[shuffle_list_num[n]] + '.wav'
-        + '" controls preload="auto">'
-        + '</audio>';
-    document.getElementById("Choral2").innerHTML = 'Voice 2:<br>'
-        + '<audio src="' + file_list[1] + song_listB[shuffle_list_num[n]] + '.wav'
+    //console.log(n)
+    //console.log(song_list)
+    document.getElementById("page").textContent = (n + 1) + "/" + scores.length;
+    document.getElementById("Choral1").innerHTML = 'Voice:<br>'
+        + '<audio src="' + file_list[0] + song_list[n] + '.wav'
         + '" controls preload="auto">'
         + '</audio>';
 }
 
 function init() {
     n = 0;
-    setLylic();
+    //setLylic();
     setAudio();
     evalCheck();
     setButton();
@@ -162,10 +163,9 @@ function init() {
 
 function exportCSV() {
     var csvData = "";
-    for (var i = 0; i < song_listA.length; i++) {
-        csvData += song_listA[shuffle_list_num[i]] + ","
-            + song_listB[shuffle_list_num[i]] + ","
-            + scores[shuffle_list_num[i]] + "\r\n";
+    for (var i = 0; i < song_list.length; i++) {
+        csvData += song_list[i] + ","
+            + scores[i] + "\r\n";
     }
 
     const link = document.createElement("a");
@@ -182,7 +182,7 @@ function exportCSV() {
 
 function next() {
     n++;
-    setLylic();
+    //setLylic();
     setAudio();
     evalCheck();
     setButton();
@@ -190,7 +190,7 @@ function next() {
 
 function prev() {
     n--;
-    setLylic();
+    //setLylic();
     setAudio();
     evalCheck();
     setButton();
@@ -211,10 +211,8 @@ var lylic;
 var outfile;
 var song;
 var file_list;
-var song_listA;
-var song_listB;
+var song_list;
 var scores;
-var shuffle_list_num
 
 // ローカルで行う場合はloadText()は動作しないため
 var n = 0;
