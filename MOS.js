@@ -83,7 +83,7 @@ function Display() {
 }
 
 function evalCheck() {
-    const c = scores[n];
+    const c = 6 - scores[n];
     if ((c <= 0) || (c > eval.length)) {
         for (var i = 0; i < eval.length; i++) {
             eval[i].checked = false;
