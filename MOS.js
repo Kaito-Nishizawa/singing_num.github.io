@@ -40,7 +40,7 @@ function start_experiment() {
     // read filepath
     var list = wav_dir + "file3.list";
     file_list = loadText(list);
-    song_list = loadText(file_list[0] + "sound.list");
+    song_list = loadText(file_list[0] + "sound3.list");
     //console.log(song_list)
     song_list.shuffle()
     console.log(song_list)
@@ -83,7 +83,7 @@ function Display() {
 }
 
 function evalCheck() {
-    const c = 6 - scores[n];
+    const c = scores[n];
     if ((c <= 0) || (c > eval.length)) {
         for (var i = 0; i < eval.length; i++) {
             eval[i].checked = false;
@@ -137,7 +137,7 @@ function setButton() {
 function evaluation() {
     for (var i = 0; i < eval.length; i++) {
         if (eval[i].checked) {
-            scores[n] = 5 - i;
+            scores[n] = i + 1;
         }
     }
     setButton();

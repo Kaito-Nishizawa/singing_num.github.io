@@ -16,8 +16,7 @@
         <ol>
             <li>名前を入力してください。</li>
             <li>Startを押してください</li>
-            <li>合唱音声を聞き、5段階評価のうち当てはまるものを1つ選んでください。</br>
-                評価軸は音質ではなく、<span style="border-bottom: solid 1px red;">合唱の自然性です。</span></li>
+            <li>合唱音声を聞き、<span style="border-bottom: solid 1px red;">何人で歌っているように聞こえるか</span>を選んでください。</li>
                 音声は何度聞いても構いません。</li>
             <li>選択を終えたらnextボタンを押し、次の実験に進んでください。</li>
             <li>評価実験を終えたらfinishボタンを押して結果をダウンロードしてください。<br>
@@ -46,11 +45,13 @@
         </table>
         <p>
             <li>当てはまるものを選んでください</li>
-            <label><input type="radio" name="eval" onclick="evaluation()">5　非常に良い</label></br>
-            <label><input type="radio" name="eval" onclick="evaluation()">4　良い</label></br>
-            <label><input type="radio" name="eval" onclick="evaluation()">3　普通</label></br>
-            <label><input type="radio" name="eval" onclick="evaluation()">2　悪い</label></br>
-            <label><input type="radio" name="eval" onclick="evaluation()">1　非常に悪い</label></br>
+            <label><input type="radio" name="eval" onclick="evaluation()">2人</label>
+            <label><input type="radio" name="eval" onclick="evaluation()">4人</label>
+            <label><input type="radio" name="eval" onclick="evaluation()">8人</label>
+            <label><input type="radio" name="eval" onclick="evaluation()">16人</label></br>
+            <label><input type="radio" name="eval" onclick="evaluation()">32人</label>
+            <label><input type="radio" name="eval" onclick="evaluation()">64人</label>
+            <label><input type="radio" name="eval" onclick="evaluation()">128人</label></br>
         </p>
         <p>
             <button id="prev" onclick="prev()">prev</button>
